@@ -1,0 +1,24 @@
+# No subir claves
+.env
+backend/**/.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# DB local
+*.sqlite3
+
+# Entornos
+.venv/
+venv/
+env/
+
+# IDE / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
