@@ -22,17 +22,14 @@ CONTACT_INBOX_TOKEN  = os.environ.get("CONTACT_INBOX_TOKEN")
 DJANGO_INBOX_URL     = os.environ.get("DJANGO_INBOX_URL", "http://127.0.0.1:9000/contact/inbox/")
 RECAPTCHA_SECRET_KEY = os.environ.get("RECAPTCHA_SECRET_KEY")
 
-
-app = FastAPI(title="Contacto API")
-
 # === C O R S ===
 # Agrega aquí los dominios desde donde enviarás el form (tu sitio estático, etc.)
 ALLOWED_ORIGINS = [
     "https://araque08.com",
     "https://www.araque08.com",
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    "http://127.0.0.7:5500",
+    #"http://127.0.0.1:5500",
+    #"http://localhost:5500",
+    #"http://127.0.0.7:5500",
 ]
 app.add_middleware(
     CORSMiddleware,
