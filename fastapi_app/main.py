@@ -4,6 +4,17 @@ from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 import httpx, os
 
+app = FastAPI(title="Contacto API")
+
+@app.get("/")
+def root():
+    return {"ok": True}   # 200 en raíz
+
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok"}  # 200 para healthcheck explícito
+
+
 load_dotenv()  # carga .env si existe
 
 # === ENV ===
