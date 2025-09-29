@@ -1,0 +1,7 @@
+# requirements.txt en la raíz
+Django>=5.0
+fastapi
+uvicorn
+gunicorn
+python-dotenv
+python-multipart

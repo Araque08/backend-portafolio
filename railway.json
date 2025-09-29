@@ -3,21 +3,21 @@
     "build": {
     "builder": "NIXPACKS"
     },
-    "services": [
-    {
-        "name": "fastapi",
-        "rootDirectory": "backend-portafolio/fastapi_app",
-        "startCommand": "uvicorn main:app --host 0.0.0.0 --port $PORT",
-        "env": {
-            "PYTHONUNBUFFERED": "1"
-        }
-    },
+        "services": [
+        {
+            "name": "fastapi",
+            "rootDirectory": "fastapi_app",
+            "startCommand": "uvicorn main:app --host 0.0.0.0 --port $PORT",
+            "env": {
+                "PYTHONUNBUFFERED": "1"
+            }
+        },
     {
         "name": "django",
-        "rootDirectory": "backend-portafolio/django_cms",
-        "startCommand": "bash -c \"python manage.py migrate && gunicorn cms_site.wsgi:application --bind 0.0.0.0:$PORT\"",
+        "rootDirectory": "django_cms",
+        "startCommand": "gunicorn cms_site.wsgi:application --bind 0.0.0.0:$PORT",
         "env": {
-            "PYTHONUNBUFFERED": "1"
+        "PYTHONUNBUFFERED": "1"
         }
     }
     ]
