@@ -43,9 +43,9 @@ def healthz():
     return {"status": "ok"}
 
 # 5) reCAPTCHA
-async def verify_recaptcha(token: str, ip: str | None) -> bool:
+async def verify_recaptcha(token: str, ip: str | None):
     if not RECAPTCHA_SECRET_KEY:
-        return False
+        return {"ok": False, "reason": "missing-secret"}
     data = {"secret": RECAPTCHA_SECRET_KEY, "response": token}
     if ip:
         data["remoteip"] = ip
@@ -53,7 +53,12 @@ async def verify_recaptcha(token: str, ip: str | None) -> bool:
         r = await client.post(RECAPTCHA_URL, data=data)
         r.raise_for_status()
         j = r.json()
-        return bool(j.get("success"))
+        # j incluye: success, challenge_ts, hostname, ["error-codes"]
+        return {
+            "ok": bool(j.get("success")),
+            "hostname": j.get("hostname"),
+            "errors": j.get("error-codes", []),
+        }
 
 # 6) Endpoint
 @app.post("/submit-contact")
